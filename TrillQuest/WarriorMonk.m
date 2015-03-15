@@ -9,6 +9,9 @@
 #import "WarriorMonk.h"
 
 @implementation WarriorMonk
+
+
+
 -(instancetype)initWarrior:(NSUInteger)walls{
    self = [[WarriorMonk alloc] initWithLimits:walls];
     self.health = 100;
@@ -19,6 +22,9 @@
 
 -(void)getHurt{
     self.health -= 50;
+    if ((self.health <= 0)&&self.delegate){
+        [self.delegate warriorDeath];
+    }
 }
 
 @end

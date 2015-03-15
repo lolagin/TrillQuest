@@ -9,33 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "Population.h"
 #import "WarriorMonk.h"
+#import "TheQuest.h"
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-       
-        
-        NSUInteger limitz = 30;
-        
-        Population *monsta = [[Population alloc] initWithLimits:limitz];
-        Population *trezure = [[Population alloc] initWithLimits:limitz];
-        WarriorMonk *lionheart = [[WarriorMonk alloc]initWarrior:limitz];
+        TheQuest *quest = [[TheQuest alloc]init];
+        [quest startTheGame];
         
         
-        
-        NSLog(@"coordinates: %lu,%lu",(unsigned long)monsta.xCord,(unsigned long)monsta.yCord);
-        NSLog(@"coordinates: %lu,%lu",(unsigned long)trezure.xCord,(unsigned long)trezure.yCord);
-        NSLog(@"coordinates: %lu,%lu",(unsigned long)lionheart.xCord,(unsigned long)lionheart.yCord);
-
-        [lionheart move:@"south"];
-        [lionheart move:@"south"];
-        [lionheart move:@"south"];
-
-        NSLog(@"coordinates: %lu,%lu",(unsigned long)monsta.xCord,(unsigned long)monsta.yCord);
-        NSLog(@"coordinates: %lu,%lu",(unsigned long)trezure.xCord,(unsigned long)trezure.yCord);
-        NSLog(@"coordinates: %lu,%lu",(unsigned long)lionheart.xCord,(unsigned long)lionheart.yCord);
-
-        
-        
-
+        NSLog(@"Thanks for playing!");
         
         
     }

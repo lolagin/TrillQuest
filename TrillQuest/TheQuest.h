@@ -7,7 +7,30 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WarriorMonk.h"
 
-@interface TheQuest : NSObject
+
+@interface TheQuest : NSObject <WarriorDeathProtocol>
+
+@property (assign, nonatomic)BOOL isRunning;
+@property (assign, nonatomic)BOOL gameState;
+@property (strong, nonatomic)Population *sackOfGold;
+@property (strong, nonatomic)Population *evilMonster;
+@property (strong, nonatomic)NSString *playerName;
+@property (assign, nonatomic)NSUInteger walls;
+-(NSString *)inputName;
+-(NSUInteger)inputWalls;
+-(void)startTheGame;
+-(void)playTheGame:(WarriorMonk *)morimoto;
+
+-(BOOL)checkCollisions:(WarriorMonk *)morimoto and:(Population *)treasureMonster;
+-(NSMutableArray *)checkExits:(WarriorMonk *)morimoto;
 
 @end
+
+
+
+
+
+
+
