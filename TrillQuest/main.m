@@ -7,14 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Population.h"
-#import "WarriorMonk.h"
 #import "TheQuest.h"
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         TheQuest *quest = [[TheQuest alloc]init];
-        [quest startTheGame];
         
+        [quest startTheGame];
         
         NSLog(@"Thanks for playing!");
         

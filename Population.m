@@ -9,6 +9,8 @@
 #import "Population.h"
 
 @implementation Population
+
+
 -(instancetype)initWithLimits:(NSUInteger)wallIn{
     self = [super init];
     if (self){
@@ -81,7 +83,7 @@ else {
 
 
 -(void)move:(NSString *)direction{
-
+    if (direction.length>0){
     NSString *chopd = [NSString stringWithString:[[direction substringToIndex:1] lowercaseString]];
     BOOL movable = [self canMove:direction];
     if ([chopd  isEqual:@"w"]){
@@ -104,5 +106,7 @@ else {
             self.yCord++;
         }
     }
+
+}
 }
 @end

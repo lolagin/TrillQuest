@@ -8,32 +8,61 @@
 
 #import "TheQuest.h"
 
+
+
 @implementation TheQuest 
 -(void)warriorDeath{
-    self.gameState = false;
+
     NSLog(@"You lose :(");
+    [self restartGame];
 }
 -(void)victoryState{
-    self.gameState = false;
-    NSLog(@"You win!!!!");
+    
+    NSLog(@"As you enter the room you are temporary blinded\nby the striking glow emanating from a massive pile of treasure\nYou win!!!!\nKnow that while this honor is devoid of material reward,\nyou stand among giants in your accomplishment");
+        [self restartGame];
+    
+}
+
+-(void)restartGame{
+
+    NSLog(@"Try again?");
+    char str[100];
+    fgets (str, 100, stdin);
+    NSString *inputString = [[NSString alloc] initWithUTF8String:str];
+    inputString = [[[inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]substringToIndex:1] lowercaseString];
+
+    if ([inputString  isEqualTo: @"y"]){
+        self.gameState = true;
+        self.isRunning = true;
+    }
+    else if ([inputString isEqualTo:@"n"]){
+        self.gameState = false;
+        self.isRunning = false;
+    }
+    else {
+        NSLog(@"Huh? That made absolutely no sense. It's a simple question--");
+        [self restartGame];
+    }
+
 }
 
 
 
--(NSString *)inputName{
+-(void)inputName{
      char str[100];
         fgets (str, 100, stdin);
         NSString *inputString = [[NSString alloc] initWithUTF8String:str];
         inputString = [inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    return inputString;
+    self.playerName = inputString;
+
 }
 
--(NSUInteger)inputWalls{
+-(void)inputWalls{
     char daBounds[100];
     fgets (daBounds, 100, stdin);
     NSString *boundsString = [[NSString alloc] initWithUTF8String:daBounds];
     NSUInteger walls = [boundsString integerValue];
-    return walls;
+    self.walls = walls;
 }
 -(void)startTheGame{
     self.isRunning = true;
@@ -42,41 +71,69 @@
         
 //        MENU- START/RESTART POINT
         NSLog(@"Welcome to TrillQuest.\nRemember everquest?\nthis is like that but for real men,\n with powerful facial hair\nand ninja skills.\n\nWhat's your name?");
-        NSString *playerName = [self inputName];
-        NSLog(@"Nice ta meetcha, %@\n now the important thing, how big of a game are you after?\nJust give me a number\n", playerName);
-        NSUInteger walls = [self inputWalls];
-        NSLog(@"%lu",walls);
-        self.playerName = [NSString stringWithString:playerName];
-        self.walls = walls;
+        [self inputName];
+        NSLog(@"Nice ta meetcha, %@\n now the important thing, how big of a game are you after?\nJust give me a number\n", self.playerName);
+        [self inputWalls];
 
-        WarriorMonk *lulx = [[WarriorMonk alloc]initWarrior:25];
+
+        
+        
 //EXECUTE GAME-- MAKE PLAYER,
-            [self playTheGame:lulx];
+            [self playTheGame];
         
         
-        self.isRunning = false;
+    
     }
 }
+-(void)placeTreasureAndMonster{
 
--(void)playTheGame:(WarriorMonk *)morimoto{
+    self.trillMonk = [[WarriorMonk alloc]initWarrior:self.walls];
+    self.evilMonster = [[Population alloc]initWithLimits:self.walls];
+    self.sackOfGold = [[Population alloc]initWithLimits:self.walls];
+    if ([self checkCollisions:self.trillMonk and:self.sackOfGold]&&[self checkCollisions:self.trillMonk and:self.evilMonster]&&self.walls>3){
+        [self placeTreasureAndMonster];
+    }
+    else {
+        self.trillMonk.name = self.playerName;
+        self.trillMonk.walls = self.walls;
+        
+    
+    
+}
+}
+
+
+-(void)checkMonsters{
+    if(![self checkCollisions:self.trillMonk and:self.evilMonster]){
+        NSLog(@"Uh oh!!!! Look out, %@, there's a MONSTERRRRR!!!!",self.playerName);
+        [self.trillMonk getHurt];
+        self.evilMonster = [[Population alloc]initWithLimits:self.walls];
+        
+    }
+    else if (![self checkCollisions:self.trillMonk and:self.sackOfGold]){
+        [self victoryState];
+    }
+}
+-(void)playTheGame{
     NSLog(@"You are in a quiet room!");
 
     self.gameState = true;
+    [self placeTreasureAndMonster];
     while (self.gameState) {
         
         
-        NSString *exits = [NSString stringWithString:[[self checkExits:morimoto]componentsJoinedByString:@", "]];
+        NSString *exits = [NSString stringWithString:[[self checkExits]componentsJoinedByString:@", "]];
         NSLog(@"You can go %@. \nPick one!",exits);
         
         char str[100];
         fgets (str, 100, stdin);
         NSString *direction = [[NSString alloc] initWithUTF8String:str];
         direction = [direction stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        [morimoto move:direction];
+        [self.trillMonk move:direction];
+        
+        [self checkMonsters];
         
         
-        
-        self.gameState = false;
     }
 }
 
@@ -89,19 +146,20 @@
         return true;
     }
 }
--(NSMutableArray *)checkExits:(WarriorMonk *)morimoto{
+
+-(NSMutableArray *)checkExits{
     NSMutableArray *exits = [[NSMutableArray alloc]init];
 
-            if (morimoto.xCord > 0){
+            if (self.trillMonk.xCord > 0){
                 [exits addObject:@"West"];
             }
-    if (morimoto.xCord < morimoto.walls){
+    if (self.trillMonk.xCord < self.trillMonk.walls){
         [exits addObject:@"East"];
     }
-    if (morimoto.yCord < morimoto.walls){
+    if (self.trillMonk.yCord < self.trillMonk.walls){
         [exits addObject:@"North"];
     }
-    if (morimoto.yCord > 0){
+    if (self.trillMonk.yCord > 0){
         [exits addObject:@"South"];
     }
     return exits;
