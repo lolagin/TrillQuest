@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6D7306111AB3C79100810849 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7306101AB3C79100810849 /* main.m */; };
+		6D7306191AB3C83C00810849 /* TheQuest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7306181AB3C83C00810849 /* TheQuest.m */; };
+		6D73061F1AB4FAA100810849 /* Population.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D73061E1AB4FAA100810849 /* Population.m */; };
+		6D7306221AB5080800810849 /* WarriorMonk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7306211AB5080800810849 /* WarriorMonk.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		6D73060D1AB3C79100810849 /* TrillQuest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TrillQuest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7306101AB3C79100810849 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6D7306171AB3C83C00810849 /* TheQuest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheQuest.h; sourceTree = "<group>"; };
+		6D7306181AB3C83C00810849 /* TheQuest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheQuest.m; sourceTree = "<group>"; };
+		6D73061D1AB4FAA100810849 /* Population.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Population.h; path = ../Population.h; sourceTree = "<group>"; };
+		6D73061E1AB4FAA100810849 /* Population.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Population.m; path = ../Population.m; sourceTree = "<group>"; };
+		6D7306201AB5080800810849 /* WarriorMonk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarriorMonk.h; sourceTree = "<group>"; };
+		6D7306211AB5080800810849 /* WarriorMonk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarriorMonk.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				6D7306101AB3C79100810849 /* main.m */,
+				6D7306171AB3C83C00810849 /* TheQuest.h */,
+				6D7306181AB3C83C00810849 /* TheQuest.m */,
+				6D73061D1AB4FAA100810849 /* Population.h */,
+				6D73061E1AB4FAA100810849 /* Population.m */,
+				6D7306201AB5080800810849 /* WarriorMonk.h */,
+				6D7306211AB5080800810849 /* WarriorMonk.m */,
 			);
 			path = TrillQuest;
 			sourceTree = "<group>";
@@ -118,7 +133,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D7306191AB3C83C00810849 /* TheQuest.m in Sources */,
+				6D73061F1AB4FAA100810849 /* Population.m in Sources */,
 				6D7306111AB3C79100810849 /* main.m in Sources */,
+				6D7306221AB5080800810849 /* WarriorMonk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
