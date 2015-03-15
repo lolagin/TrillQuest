@@ -90,12 +90,13 @@
     self.trillMonk = [[WarriorMonk alloc]initWarrior:self.walls];
     self.evilMonster = [[Population alloc]initWithLimits:self.walls];
     self.sackOfGold = [[Population alloc]initWithLimits:self.walls];
-    if ([self checkCollisions:self.trillMonk and:self.sackOfGold]&&[self checkCollisions:self.trillMonk and:self.evilMonster]&&self.walls>3){
+    if (![self checkCollisions:self.trillMonk and:self.sackOfGold]&&[self checkCollisions:self.trillMonk and:self.evilMonster]&&self.walls>3){
         [self placeTreasureAndMonster];
     }
     else {
         self.trillMonk.name = self.playerName;
         self.trillMonk.walls = self.walls;
+        self.trillMonk.delegate = self;
         
     
     

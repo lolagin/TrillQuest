@@ -16,7 +16,6 @@ int main(int argc, const char * argv[]) {
         
         NSLog(@"Thanks for playing!");
         
-        
     }
     return 0;
 }

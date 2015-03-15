@@ -7,12 +7,15 @@
 //
 
 #import "Population.h"
+@class TheQuest;
 @protocol WarriorDeathProtocol
     @required
     @optional
     -(void)warriorDeath;
 @end
-@interface WarriorMonk : Population
+@interface WarriorMonk : Population {
+    
+}
 
 @property (nonatomic, weak) id<WarriorDeathProtocol> delegate;
 

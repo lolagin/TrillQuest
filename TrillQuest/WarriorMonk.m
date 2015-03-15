@@ -7,9 +7,8 @@
 //
 
 #import "WarriorMonk.h"
-
 @implementation WarriorMonk
-
+@synthesize delegate;
 
 
 -(instancetype)initWarrior:(NSUInteger)walls{
@@ -22,8 +21,12 @@
 
 -(void)getHurt{
     self.health -= 50;
-    if ((self.health <= 0)&&self.delegate){
+    
+    if (self.health <= 0){
+    if (self.delegate) {
         [self.delegate warriorDeath];
+    }
+    
     }
 }
 
